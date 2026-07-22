@@ -1,0 +1,113 @@
+/* pages/ClinicsPage.module.css — Cold-chain theme */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Page header ──────────────────────────────────────────────────────────── */
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.035em;
+}
+
+.pageSubtitle {
+  margin: 0.375rem 0 0;
+  font-size: 0.875rem;
+  color: var(--ink-60);
+}
+
+.refreshBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4rem 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--ink-12);
+  border-radius: var(--radius-md);
+  color: var(--ink-60);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.refreshBtn:hover {
+  color: var(--ink);
+  border-color: var(--ink-20);
+}
+
+/* ── Error banner — plain, not apologetic ─────────────────────────────────── */
+.errorBanner {
+  padding: 0.75rem 1rem;
+  background: var(--breach-surface);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-left: 3px solid var(--breach);
+  border-radius: var(--radius-md);
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
+
+/* ── Content grid ─────────────────────────────────────────────────────────── */
+/* List (primary) on left, form (context rail) on right */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .grid { grid-template-columns: 1fr; }
+  /* Form above list on mobile — action before result */
+  .formSection { order: -1; }
+}
+
+/* ── List section ─────────────────────────────────────────────────────────── */
+.listHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.875rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-40);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  background: var(--cold-12);
+  color: var(--cold);
+  border-radius: 10px;
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}

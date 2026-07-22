@@ -1,0 +1,82 @@
+/* context/ToastContext.module.css
+   Ink-dark toasts on cold-surface background — visually distinct, transient.
+   Left border encodes the status type (stable/alert/breach/cold).
+   Deliberate contrast: dark card on light background means you can't miss it.
+*/
+
+.toastContainer {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 21rem;
+  width: calc(100vw - 2rem);
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-md);
+  border-left: 3px solid transparent;
+  /* Ink-dark: visually distinct from the cold-surface page background */
+  background: var(--ink);
+  box-shadow: var(--shadow-lg);
+  animation: toastIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(240, 249, 255, 0.88);
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(0.75rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Border colour encodes status — same semantic as the Rail dots */
+.success { border-left-color: var(--stable); }
+.error   { border-left-color: var(--breach); }
+.warning { border-left-color: var(--alert);  }
+.info    { border-left-color: var(--cold);   }
+
+/* ── Icon ─────────────────────────────────────────────────────────────────── */
+.toastIcon {
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+  line-height: 1;
+}
+
+.success .toastIcon { color: var(--stable); }
+.error   .toastIcon { color: var(--breach); }
+.warning .toastIcon { color: var(--alert);  }
+.info    .toastIcon { color: var(--cold);   }
+
+/* ── Message ──────────────────────────────────────────────────────────────── */
+.toastMessage {
+  flex: 1;
+  line-height: 1.45;
+}
+
+/* ── Dismiss ──────────────────────────────────────────────────────────────── */
+.toastDismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(240, 249, 255, 0.35);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: color var(--t-fast);
+}
+
+.toastDismiss:hover {
+  color: rgba(240, 249, 255, 0.75);
+}

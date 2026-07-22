@@ -1,0 +1,122 @@
+/* components/ClinicForm/ClinicForm.module.css — Cold-chain theme */
+
+.form {
+  background: var(--surface);
+  border: 1px solid var(--ink-12);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+/* Mono display face for the form heading — this panel handles data intake */
+.title {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.02em;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink-06);
+}
+
+/* ── Field ────────────────────────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-60);
+}
+
+.input {
+  background: var(--cold-surface);
+  border: 1px solid var(--ink-12);
+  border-radius: var(--radius-md);
+  padding: 0.625rem 0.875rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+}
+
+.input::placeholder {
+  color: var(--ink-20);
+}
+
+.input:focus {
+  border-color: var(--cold);
+  box-shadow: 0 0 0 3px var(--cold-08);
+  background: var(--surface);
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fieldError .input {
+  border-color: var(--breach);
+  box-shadow: 0 0 0 3px var(--breach-surface);
+}
+
+.errorMsg {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--breach);
+}
+
+/* ── Submit button ────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  /* --cold as the single CTA colour, no gradient */
+  background: var(--cold);
+  color: #fff;
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  transition: opacity var(--t-fast);
+  letter-spacing: 0.01em;
+}
+
+.btn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn:active:not(:disabled) {
+  opacity: 0.78;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Loader spin ──────────────────────────────────────────────────────────── */
+.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

@@ -1,65 +1,63 @@
-/* components/ClinicForm/ClinicForm.module.css */
+/* components/ClinicForm/ClinicForm.module.css — Cold-chain theme */
 
 .form {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--ink-12);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.125rem;
 }
 
+/* Mono display face for the form heading — this panel handles data intake */
 .title {
-  font-size: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--ink);
   margin: 0;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.02em;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink-06);
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-@media (max-width: 560px) {
-  .row { grid-template-columns: 1fr; }
-}
-
+/* ── Field ────────────────────────────────────────────────────────────────── */
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
+  gap: 0.3rem;
 }
 
 .label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-60);
 }
 
 .input {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 0.65rem 0.875rem;
-  color: #e2e8f0;
-  font-size: 0.925rem;
+  background: var(--cold-surface);
+  border: 1px solid var(--ink-12);
+  border-radius: var(--radius-md);
+  padding: 0.625rem 0.875rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
 }
 
-.input::placeholder { color: #334155; }
+.input::placeholder {
+  color: var(--ink-20);
+}
 
 .input:focus {
-  border-color: #06b6d4;
-  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+  border-color: var(--cold);
+  box-shadow: 0 0 0 3px var(--cold-08);
+  background: var(--surface);
 }
 
 .input:disabled {
@@ -68,13 +66,14 @@
 }
 
 .fieldError .input {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  border-color: var(--breach);
+  box-shadow: 0 0 0 3px var(--breach-surface);
 }
 
 .errorMsg {
+  font-family: var(--font-body);
   font-size: 0.78rem;
-  color: #f87171;
+  color: var(--breach);
 }
 
 /* ── Submit button ────────────────────────────────────────────────────────── */
@@ -82,36 +81,37 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.5rem;
-  border-radius: 10px;
+  gap: 0.45rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  /* --cold as the single CTA colour, no gradient */
+  background: var(--cold);
   color: #fff;
-  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
   align-self: flex-start;
+  margin-top: 0.25rem;
+  transition: opacity var(--t-fast);
+  letter-spacing: 0.01em;
 }
 
 .btn:hover:not(:disabled) {
-  opacity: 0.9;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+  opacity: 0.88;
 }
 
 .btn:active:not(:disabled) {
-  transform: translateY(0);
+  opacity: 0.78;
 }
 
 .btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* ── Spin animation ───────────────────────────────────────────────────────── */
+/* ── Loader spin ──────────────────────────────────────────────────────────── */
 .spin {
   animation: spin 0.8s linear infinite;
 }

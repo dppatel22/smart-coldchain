@@ -1,9 +1,7 @@
 /**
  * components/ClinicList/ClinicList.jsx
  * ─────────────────────────────────────────────────────────────────────────────
- * Renders the list of clinics fetched from the useClinics hook.
- * Shows a skeleton while loading, an empty state when there's no data,
- * and individual cards with a remove button.
+ * Renders the list of health facilities in the cold-chain network.
  *
  * Props:
  *   clinics   Clinic[]
@@ -14,7 +12,7 @@
 import { Building2, MapPin, Trash2 } from 'lucide-react';
 import styles from './ClinicList.module.css';
 
-// ── Skeleton placeholder ──────────────────────────────────────────────────────
+// ── Skeleton ──────────────────────────────────────────────────────────────────
 function ClinicSkeleton() {
   return (
     <div className={styles.skeleton}>
@@ -24,34 +22,36 @@ function ClinicSkeleton() {
   );
 }
 
-// ── Individual card ───────────────────────────────────────────────────────────
+// ── Individual facility card ───────────────────────────────────────────────────
 function ClinicCard({ clinic, onRemove }) {
   return (
     <div className={styles.card}>
       <span className={styles.cardIcon}>
-        <Building2 size={18} />
+        <Building2 size={16} strokeWidth={2} />
       </span>
       <div className={styles.cardBody}>
         <p className={styles.cardName}>{clinic.name}</p>
+        {/* County rendered in mono — it's a geographic data field */}
         <p className={styles.cardCounty}>
-          <MapPin size={12} /> {clinic.county}
+          <MapPin size={11} />
+          <span className={styles.countyValue}>{clinic.county}</span>
         </p>
       </div>
       {onRemove && (
         <button
           className={styles.removeBtn}
           onClick={() => onRemove(clinic.id)}
-          title="Remove facility"
-          aria-label={`Remove ${clinic.name}`}
+          title="Remove from network"
+          aria-label={`Remove ${clinic.name} from network`}
         >
-          <Trash2 size={15} />
+          <Trash2 size={14} />
         </button>
       )}
     </div>
   );
 }
 
-// ── List ─────────────────────────────────────────────────────────────────────
+// ── List ──────────────────────────────────────────────────────────────────────
 export default function ClinicList({ clinics = [], loading = false, onRemove }) {
   if (loading) {
     return (
@@ -66,9 +66,11 @@ export default function ClinicList({ clinics = [], loading = false, onRemove }) 
   if (!clinics.length) {
     return (
       <div className={styles.empty}>
-        <Building2 size={36} className={styles.emptyIcon} />
-        <p>No facilities registered yet.</p>
-        <p className={styles.emptyHint}>Use the form above to add your first clinic.</p>
+        <Building2 size={32} className={styles.emptyIcon} strokeWidth={1.5} />
+        <p className={styles.emptyTitle}>No facilities in the network yet.</p>
+        <p className={styles.emptyHint}>
+          Add your first facility to start tracking cold storage.
+        </p>
       </div>
     );
   }

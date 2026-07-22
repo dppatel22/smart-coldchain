@@ -1,16 +1,13 @@
 const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config();
 
-// Pull the secure variables from the .env file
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-// Throw a fatal error if the keys are missing so we don't debug blindly
-if (!supabaseUrl || !supabaseKey) {
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!supabaseUrl || !supabaseServiceKey) {
     throw new Error('MISSING SUPABASE CREDENTIALS! Check your .env file.');
 }
 
-// Initialize and export the secure database connection
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-module.exports = supabase;
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
+module.exports = supabase; 
